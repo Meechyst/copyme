@@ -43,8 +43,8 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('contact', {
-        url: '/contact',
+      .state('calc', {
+        url: '/calc',
         templateUrl: 'views/contact.html',
         controller: 'MainController',
         controllerAs: 'main'
@@ -55,6 +55,16 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .state('add', {
+        url: '/add/{a:[0-9]+}/{b:[0-9]+}',
+        templateUrl: 'views/result.html',
+        controller: 'addController',
+        controllerAs: 'add'
+      })
+      .state('otherwise', {
+        url: '*path',
+        template: 'No path available'
+      });
 
   }
 
@@ -100,11 +110,20 @@
     .module('copyme')
     .run(run);
 
-  run.$inject = ['$rootScope', '$location'];
+  run.$inject = ['$rootScope'];
 
-  function run($rootScope, $location) {
+  function run($rootScope) {
 
-    // put here everything that you need to run on page load
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, options){
+      console.log('asd');
+
+
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams){
+      console.log('fsa');
+
+    });
 
   }
 

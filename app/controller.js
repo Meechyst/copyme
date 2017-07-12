@@ -11,14 +11,25 @@
     .module('copyme')
     .controller('MainController', MainController);
 
-  MainController.$inject = ['LocalStorage', 'QueryService'];
+  MainController.$inject = ['$state'];
 
 
-  function MainController(LocalStorage, QueryService) {
+  function MainController($state) {
 
     // 'controller as' syntax
     var vm = this;
 
+    vm.a = 0;
+    vm.b = 0;
+
+    vm.doAdd = function() {
+
+      $state.go('add', {
+        a: vm.a,
+        b: vm.b
+      });
+
+    }
 
     ////////////  function definitions
 
